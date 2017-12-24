@@ -90,7 +90,7 @@
 <meta property="og:url" content="http://yoursite.com/2017/12/22/简易web服务器/index.html">
 <meta property="og:site_name" content="fade">
 <meta property="og:description" content="简易http服务器 某实验课要求实现一个简单的http服务器，正好这学期学了java，正好拿来练手（一箭双雕） 1.http请求类型OPTIONS：返回服务器针对特定资源所支持的HTTP请求方法。也可以利用向Web服务器发送’*’的请求来测试服务器的功能性。HEAD：向服务器索要与GET请求相一致的响应，只不过响应体将不会被返回。这一方法可以在不必传输整个响应内容的情况下，就可以获取包含在响应消息">
-<meta property="og:updated_time" content="2017-12-24T09:01:12.348Z">
+<meta property="og:updated_time" content="2017-12-24T11:59:44.932Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="简易http服务器">
 <meta name="twitter:description" content="简易http服务器 某实验课要求实现一个简单的http服务器，正好这学期学了java，正好拿来练手（一箭双雕） 1.http请求类型OPTIONS：返回服务器针对特定资源所支持的HTTP请求方法。也可以利用向Web服务器发送’*’的请求来测试服务器的功能性。HEAD：向服务器索要与GET请求相一致的响应，只不过响应体将不会被返回。这一方法可以在不必传输整个响应内容的情况下，就可以获取包含在响应消息">
@@ -311,6 +311,7 @@
 <p>某实验课要求实现一个简单的http服务器，正好这学期学了java，正好拿来练手（一箭双雕）</p>
 <h2 id="1-http请求类型"><a href="#1-http请求类型" class="headerlink" title="1.http请求类型"></a>1.http请求类型</h2><p>OPTIONS：返回服务器针对特定资源所支持的HTTP请求方法。也可以利用向Web服务器发送’*’的请求来测试服务器的功能性。<br>HEAD：向服务器索要与GET请求相一致的响应，只不过响应体将不会被返回。这一方法可以在不必传输整个响应内容的情况下，就可以获取包含在响应消息头中的元信息。<br>GET：向特定的资源发出请求。<br>POST：向指定资源提交数据进行处理请求（例如提交表单或者上传文件）。数据被包含在请求体中。POST请求可能会导致新的资源的创建和/或已有资源的修改。<br>PUT：向指定资源位置上传其最新内容。<br>DELETE：请求服务器删除Request-URI所标识的资源。<br>TRACE：回显服务器收到的请求，主要用于测试或诊断。<br>CONNECT：HTTP/1.1协议中预留给能够将连接改为管道方式的代理服务器。</p>
 <p>虽然HTTP的请求方式有8种，但是我们在实际应用中常用的也就是get和post，其他请求方式也都可以通过这两种方式间接的来实现。</p>
+<a id="more"></a>
 <h2 id="2-需要实现的内容"><a href="#2-需要实现的内容" class="headerlink" title="2.需要实现的内容"></a>2.需要实现的内容</h2><p>事实上，post方法通常只用于更新站点或提交表单，而get适用于大多数的请求（包括提交表单）。<br>因此，这里只对get方法做了实现。<br>另外，图形界面是必不可少的（拒绝控制台），添加输入文本框可以实现自定义监听端口。</p>
 <h2 id="3-具体实现"><a href="#3-具体实现" class="headerlink" title="3.具体实现"></a>3.具体实现</h2><h3 id="3-1-图形界面"><a href="#3-1-图形界面" class="headerlink" title="3.1 图形界面"></a>3.1 图形界面</h3><p>在java的gui中，awt和swing都已经停止更新了，但考虑到web服务器界面简单，于是放弃了javafx而转用相对简单的swing。</p>
 <p>首先是定义相关容器和组件<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">JFrame frame;//必须要有的框架</span><br><span class="line">JPanel panel;//放置在frame中的容器</span><br><span class="line">JLabel hint;//标签</span><br><span class="line">JTextField port;//输入监听端口号的文本框</span><br><span class="line">static JTextArea info;//信息反馈区域</span><br><span class="line">JButton confirm;//确认按钮</span><br><span class="line">JScrollPane scroll;//可滑动的容器，用于放置JTextArea</span><br></pre></td></tr></table></figure></p>
